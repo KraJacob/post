@@ -1,6 +1,50 @@
 @extends('layouts.app')
 
 @section('content')
+
+    <script>
+        // window.fbAsyncInit = function() {
+        //     FB.init({
+        //         appId      : '{your-app-id}',
+        //         cookie     : true,
+        //         xfbml      : true,
+        //         version    : '{api-version}'
+        //     });
+        //
+        //     FB.AppEvents.logPageView();
+        //     FB.getLoginStatus(function(response) {
+        //         statusChangeCallback(response);
+        //     });
+        //
+        //
+        //     {
+        //         status: 'connected',
+        //             authResponse: {
+        //         accessToken: '...',
+        //             expiresIn:'...',
+        //             signedRequest:'...',
+        //             userID:'...'
+        //     }
+        //
+        //
+        //     };
+        //
+        // (function(d, s, id){
+        //     var js, fjs = d.getElementsByTagName(s)[0];
+        //     if (d.getElementById(id)) {return;}
+        //     js = d.createElement(s); js.id = id;
+        //     js.src = "https://connect.facebook.net/en_US/sdk.js";
+        //     fjs.parentNode.insertBefore(js, fjs);
+        // }(document, 'script', 'facebook-jssdk'));
+        //
+        //     function checkLoginState() {
+        //         FB.getLoginStatus(function(response) {
+        //             statusChangeCallback(response);
+        //         });
+        //     }
+        // }
+    </script>
+
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -57,8 +101,19 @@
                                     {{ __('Login') }}
                                 </button>
 
+                                {{--<fb:login-button
+                                        scope="public_profile,email"
+                                        onlogin="checkLoginState();">
+                                </fb:login-button>--}}
+
                                 <a class="btn btn-link" href="{{ route('password.request') }}">
                                     {{ __('Forgot Your Password?') }}
+                                </a>
+                            </div>
+                            <div class="panel-heading">Login with Facebook</div>
+                            <div class="panel-body">
+                                <a class="btn btn-primary" href="/login/facebook">
+                                    Facebook Login
                                 </a>
                             </div>
                         </div>
