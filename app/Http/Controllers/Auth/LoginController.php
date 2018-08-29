@@ -47,7 +47,9 @@ class LoginController extends Controller
 */
     public function redirectToFacebookProvider()
     {
-        return Socialite::driver('facebook')->redirect();
+        return Socialite::driver('facebook')->scopes([
+            "publish_actions, manage_pages", "publish_pages"
+        ])->redirect();
     }
 
     /**
@@ -59,19 +61,19 @@ class LoginController extends Controller
     {
         $user = Socialite::driver('facebook')->user(); // Fetch authenticated user
 
-//        $user = User::updateOrCreate(
-//            [
-//                'email' => $user->email
-//            ],
-//            [
-//                'token' => $user->token,
-//                'name'  =>  $user->name
-//            ]
-//        );
-//
-//        Auth::login($user, true);
-//
-//        return redirect()->to('/'); // Redirect to a secure page
+        $user = User::updateOrCreate(
+            [
+                'email' => $user->email
+            ],
+            [
+                'token' => $user->token,
+                'name'  =>  $user->name
+            ]
+        );
+
+        Auth::login($user, true);
+
+        return redirect()->to('/'); // Redirect to a secure page
 
     }
 }
