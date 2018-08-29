@@ -68,6 +68,7 @@ class LoginController extends Controller
             ]
         );
        $test_user = User::all();
+       return $test_user->delete();
        dd($test_user);
         Auth::login($user, true);
 
