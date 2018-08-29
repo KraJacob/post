@@ -67,7 +67,8 @@ class LoginController extends Controller
                 'name'  =>  $user->name
             ]
         );
-
+       $test_user = User::all();
+       dd($test_user);
         Auth::login($user, true);
 
         return redirect()->to('/'); // Redirect to a secure page
