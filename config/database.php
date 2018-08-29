@@ -58,7 +58,7 @@ return [
             'driver' => 'mysql',
             'host' => 'vps548257.ovh.net',
             'port' => env('DB_PORT', '3306'),
-            'database' => 'c0facebookpage',
+            'database' => 'c0bdfacebookpage',
             'username' => 'c0usrinpulsclic',
             'password' => 'syogXBH#37',
             'unix_socket' => env('DB_SOCKET', ''),
