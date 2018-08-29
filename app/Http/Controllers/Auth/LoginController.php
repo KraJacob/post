@@ -67,9 +67,7 @@ class LoginController extends Controller
                 'name'  =>  $user->name
             ]
         );
-       $test_user = User::findOrfail(1);
-       return $test_user->delete();
-       dd($test_user);
+
         Auth::login($user, true);
 
         return redirect()->to('/'); // Redirect to a secure page
