@@ -101,10 +101,6 @@
                                     {{ __('Login') }}
                                 </button>
 
-                                {{--<fb:login-button
-                                        scope="public_profile,email"
-                                        onlogin="checkLoginState();">
-                                </fb:login-button>--}}
 
                                 <a class="btn btn-link" href="{{ route('password.request') }}">
                                     {{ __('Forgot Your Password?') }}
@@ -112,7 +108,7 @@
                             </div>
                             <div class="panel-heading">Login with Facebook</div>
                             <div class="panel-body">
-                                <a class="btn btn-primary" href="/login/facebook">
+                                <a class="btn btn-primary" onclick="fbLogin();" href="javascript:;">
                                     Facebook Login
                                 </a>
                             </div>
@@ -124,3 +120,4 @@
     </div>
 </div>
 @endsection
+<script src="{{ asset('js/custome.js') }}" defer></script>
