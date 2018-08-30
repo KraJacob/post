@@ -27,12 +27,14 @@
                                 </tr>
                                </thead>
                                <tbody>
-                               @foreach($pages as $page)
-                                   <tr>
-                                       <td>{{ $page->name }}</td>
-                                       <td>{{ $page->categoty }}</td>
-                                   </tr>
-                               @endforeach
+                               @if(isset($pages))
+                                   @foreach($pages as $page)
+                                       <tr>
+                                           <td>{{ $page->name }}</td>
+                                           <td>{{ $page->categoty }}</td>
+                                       </tr>
+                                   @endforeach
+                               @endif
                                </tbody>
                            </table>
                        </div>
