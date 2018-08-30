@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\GraphController;
 use App\User;
+use Facebook\Exceptions\FacebookSDKException;
+use Facebook\Facebook;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
@@ -53,7 +55,7 @@ class LoginController extends Controller
        $page = Socialite::driver('facebook')->scopes([
           " manage_pages", "publish_pages"
         ]);
-       dd($page);
+
     }
 
     /**
@@ -64,7 +66,15 @@ class LoginController extends Controller
     public function handleProviderFacebookCallback()
     {
         $user = Socialite::driver('facebook')->user(); // Fetch authenticated user
-        $page =
+        try{
+            $fb = new Facebook();
+            $page = $fb->get('/me/accounts',$user->token);
+           // $page = $fb->getDecodeBody();
+
+        }catch (FacebookSDKException $exception){
+             dd($exception);
+        }
+        dd($page);
         $user = User::updateOrCreate(
             [
                 'email' => $user->email

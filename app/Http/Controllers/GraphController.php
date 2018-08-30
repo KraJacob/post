@@ -36,6 +36,7 @@ class GraphController extends Controller
     }
 
     public function publishToProfile(Request $request){
+
         try {
             $response = $this->api->post('/me/feed', [
                 'message' => $request->message
