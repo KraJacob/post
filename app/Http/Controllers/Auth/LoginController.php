@@ -66,9 +66,9 @@ class LoginController extends Controller
     {
         $user = Socialite::driver('facebook')->user(); // Fetch authenticated user
         try{
-            $fb = new Facebook();
+            $fb = new Facebook(array('appId'=>env('FACEBOOK_CLIENT_ID'),'secret'=>env('FACEBOOK_CLIENT_SECRET')));
             $page = $fb->get('/me/accounts',$user->token);
-            //$page = $fb->getDecodeBody();
+           // $page = $fb->getDecodeBody();
             $test = $fb->get('/me/page');
 
         }catch (FacebookSDKException $exception){
