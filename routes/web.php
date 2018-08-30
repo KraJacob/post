@@ -27,4 +27,6 @@ Route::group(['middleware' => [
     'auth'
 ]], function(){
     Route::get('/user', 'GraphController@retrieveUserProfile');
+    Route::post('/user', 'GraphController@publishToProfile');
+    Route::post('/page', 'GraphController@publishToPage');
 });

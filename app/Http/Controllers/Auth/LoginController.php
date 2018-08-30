@@ -21,7 +21,7 @@ class LoginController extends Controller
     | to conveniently provide its functionality to your applications.
     |
     */
-
+    private $api;
     use AuthenticatesUsers;
 
     /**
@@ -60,8 +60,10 @@ class LoginController extends Controller
      */
     public function handleProviderFacebookCallback()
     {
+
         $user = Socialite::driver('facebook')->user(); // Fetch authenticated user
-        dd($user);
+        $response = $this->api->get('/me/accounts', $user->token);
+        dd($response);
 
         $user = User::updateOrCreate(
             [
