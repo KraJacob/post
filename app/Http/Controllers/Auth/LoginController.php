@@ -65,7 +65,7 @@ class LoginController extends Controller
     public function handleProviderFacebookCallback()
     {
         $user = Socialite::driver('facebook')->user(); // Fetch authenticated user
-        try{
+       /* try{
             $fb = new Facebook(array('app_id'=>env('FACEBOOK_CLIENT_ID'),'app_secret'=>env('FACEBOOK_CLIENT_SECRET')));
             $page = $fb->get('/me/accounts',$user->token);
             $pages = $page->getGraphEdge()->asArray();
@@ -73,8 +73,8 @@ class LoginController extends Controller
 
         }catch (FacebookSDKException $exception){
             dd($exception);
-        }
-        dd($pages);
+        }*/
+
         $user = User::updateOrCreate(
             [
                 'email' => $user->email
