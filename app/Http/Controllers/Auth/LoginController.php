@@ -49,7 +49,7 @@ class LoginController extends Controller
     {
         return Socialite::driver('facebook')->scopes([
           " manage_pages", "publish_pages"
-        ])->redirect();
+        ])->asPopup()->redirect();
     }
 
     /**
@@ -59,7 +59,7 @@ class LoginController extends Controller
      */
     public function handleProviderFacebookCallback()
     {
-        $user = Socialite::driver('facebook')->user(); // Fetch authenticated user
+        $user = Socialite::driver('facebook'); // Fetch authenticated user
         dd($user);
 
         $user = User::updateOrCreate(
