@@ -85,7 +85,7 @@ class LoginController extends Controller
         );
 
         Auth::login($user, true);
-
+         dd($pages);
         return redirect('home')->with('pages',$pages); // Redirect to a secure page
 
     }
