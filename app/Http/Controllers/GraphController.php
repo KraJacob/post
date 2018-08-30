@@ -48,7 +48,7 @@ class GraphController extends Controller
         }
     }
 
-    public function getPageAccessToken($page_id){
+    public function getPageAccessToken(){
         try {
             // Get the \Facebook\GraphNodes\GraphUser object for the current user.
             // If you provided a 'default_access_token', the '{access-token}' is optional.
@@ -65,11 +65,12 @@ class GraphController extends Controller
 
         try {
             $pages = $response->getGraphEdge()->asArray();
-            foreach ($pages as $key) {
+            dd($pages);
+            /*foreach ($pages as $key) {
                 if ($key['id'] == $page_id) {
                     return $key['access_token'];
                 }
-            }
+            }*/
         } catch (FacebookSDKException $e) {
             dd($e); // handle exception
         }

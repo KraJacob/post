@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\GraphController;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
+use PhpParser\Node\Expr\New_;
 
 class LoginController extends Controller
 {
@@ -48,9 +50,10 @@ class LoginController extends Controller
 */
     public function redirectToFacebookProvider()
     {
-       return Socialite::driver('facebook')->scopes([
+       $page = Socialite::driver('facebook')->scopes([
           " manage_pages", "publish_pages"
-        ])->asPopup()->redirect();
+        ]);
+       dd($page);
     }
 
     /**
@@ -60,11 +63,8 @@ class LoginController extends Controller
      */
     public function handleProviderFacebookCallback()
     {
-
         $user = Socialite::driver('facebook')->user(); // Fetch authenticated user
-        $response = $this->api->get('/me/accounts', $user->token);
-        dd($response);
-
+        $page =
         $user = User::updateOrCreate(
             [
                 'email' => $user->email
