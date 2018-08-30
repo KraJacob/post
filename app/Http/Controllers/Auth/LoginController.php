@@ -46,10 +46,9 @@ class LoginController extends Controller
 *
 * @return \Illuminate\Http\Response
 */
-    public function redirectToFacebookProvider(Request $request)
+    public function redirectToFacebookProvider()
     {
-        session()->put('state', $request->input('state'));
-        return Socialite::driver('facebook')->scopes([
+       return Socialite::driver('facebook')->scopes([
           " manage_pages", "publish_pages"
         ])->asPopup()->redirect();
     }
