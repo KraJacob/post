@@ -68,7 +68,7 @@ class LoginController extends Controller
         try{
             $fb = new Facebook(array('app_id'=>env('FACEBOOK_CLIENT_ID'),'app_secret'=>env('FACEBOOK_CLIENT_SECRET')));
             $page = $fb->get('/me/accounts',$user->token);
-           // $page = $fb->getDecodeBody();
+            $page = $fb->getDecodeBody();
            // $test = $fb->get('/me/pages',$user->token);
 
         }catch (FacebookSDKException $exception){
