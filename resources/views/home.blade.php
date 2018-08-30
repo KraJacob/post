@@ -13,7 +13,7 @@
                             {{ session('status') }}
                         </div>
                     @endif
-
+                    @if(isset($pages))
                    <div class="card bg-primary">
                        <div class="card-header">
                            <label>Liste des pages facebook</label>
@@ -27,18 +27,17 @@
                                 </tr>
                                </thead>
                                <tbody>
-                               @if(isset($pages))
                                    @foreach($pages as $page)
                                        <tr>
                                            <td>{{ $page->name }}</td>
                                            <td>{{ $page->categoty }}</td>
                                        </tr>
                                    @endforeach
-                               @endif
                                </tbody>
                            </table>
                        </div>
                    </div>
+                  @endif
                 </div>
             </div>
         </div>
