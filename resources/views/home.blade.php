@@ -14,7 +14,29 @@
                         </div>
                     @endif
 
-                    You are logged in!
+                   <div class="card bg-primary">
+                       <div class="card-header">
+                           <label>Liste des pages facebook</label>
+                       </div>
+                       <div class="card-body">
+                           <table class="table-striped">
+                               <thead>
+                                <tr>
+                                    <th>Nom</th>
+                                    <th>Catégorie</th>
+                                </tr>
+                               </thead>
+                               <tbody>
+                               @foreach($pages as $page)
+                                   <tr>
+                                       <td>{{ $page->name }}</td>
+                                       <td>{{ $page->categoty }}</td>
+                                   </tr>
+                               @endforeach
+                               </tbody>
+                           </table>
+                       </div>
+                   </div>
                 </div>
             </div>
         </div>
