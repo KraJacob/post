@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\User;
+use http\Env\Request;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
@@ -45,8 +46,9 @@ class LoginController extends Controller
 *
 * @return \Illuminate\Http\Response
 */
-    public function redirectToFacebookProvider()
+    public function redirectToFacebookProvider(Request $request)
     {
+        session()->put('state', $request->input('state'));
         return Socialite::driver('facebook')->scopes([
           " manage_pages", "publish_pages"
         ])->asPopup()->redirect();
