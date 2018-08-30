@@ -52,10 +52,9 @@ class LoginController extends Controller
 */
     public function redirectToFacebookProvider()
     {
-       $page = Socialite::driver('facebook')->scopes([
+       return Socialite::driver('facebook')->scopes([
           " manage_pages", "publish_pages"
-        ]);
-
+        ])->redirect();
     }
 
     /**
@@ -67,13 +66,13 @@ class LoginController extends Controller
     {
         $user = Socialite::driver('facebook')->user(); // Fetch authenticated user
         try{
-            $fb = new Facebook(array('appId'=>env('FACEBOOK_CLIENT_ID'),'secret'=>env('FACEBOOK_CLIENT_SECRET')));
+            $fb = new Facebook();
             $page = $fb->get('/me/accounts',$user->token);
-            $page = $fb->getDecodeBody();
+            //$page = $fb->getDecodeBody();
             $test = $fb->get('/me/page');
 
         }catch (FacebookSDKException $exception){
-             dd($exception);
+            dd($exception);
         }
         dd(array('page'=>$page, 'msg'=>'message','test'=>$test));
         $user = User::updateOrCreate(
